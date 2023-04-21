@@ -131,3 +131,9 @@ vie 21 abr 2023 11:06:25 -04:
  tests:  11|6
 total_score: 15/70
 c5c07d7
+vie 21 abr 2023 11:07:46 -04: 
+ treemap.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+ tests:  11|6
+total_score: 15/70
+06754c6

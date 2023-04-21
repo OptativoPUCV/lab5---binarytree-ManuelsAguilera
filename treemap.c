@@ -81,13 +81,12 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     //Copiare mas o menos el mismo mecanismo de busqueda
     //debido a que debo implementar lo mismo pero de distinta forma.
     TreeNode* auxNode = createTreeNode(key,value);
-
+    void* auxkey=NULL;
     tree->current = tree->root;
 
     while (tree->current != NULL)
-    {
-        
-        void* auxkey = (void*) (tree->current)->pair->key;
+    {        
+        auxkey = (void*) (tree->current)->pair->key;
         if (is_equal(tree,auxkey,key))  return;
         
         //lower_than retorna 1 si key1<key2, y 0 sino
