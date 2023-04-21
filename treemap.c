@@ -67,9 +67,9 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
         if (is_equal(tree,auxkey,key)) return tree->current->pair;
         //lower_than retorna 1 si key1<key2, y 0 sino
         if (tree->lower_than(auxkey,key))
-            tree->current = tree->current->left;
+            tree->current = tree->current->right;
         else
-            tree->current = tree->current->right;        
+            tree->current = tree->current->left;        
     }
 
     return NULL;
