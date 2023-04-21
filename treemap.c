@@ -59,7 +59,6 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
     tree->current = tree->root;
 
-    if (tree->current == NULL) printf("Este es un null\n");
     while (tree->current != NULL)
     {
         
@@ -67,9 +66,9 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
         if (is_equal(tree,auxkey,key)) return tree->current->pair;
         //lower_than retorna 1 si key1<key2, y 0 sino
         if (tree->lower_than(auxkey,key))
-            tree->current = tree->current->right;
+            tree->current = tree->current->right; //key es mayor
         else
-            tree->current = tree->current->left;        
+            tree->current = tree->current->left;  //key es menor      
     }
 
     return NULL;
@@ -79,6 +78,33 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
+    //Copiare mas o menos el mismo mecanismo de busqueda
+    //debido a que debo implementar lo mismo pero de distinta forma.
+    TreeNode* auxNode = createTreeNode(key,value);
+
+    tree->current = tree->root;
+
+    while (tree->current != NULL)
+    {
+        
+        void* auxkey = (void*) (tree->current)->pair->key;
+        if (is_equal(tree,auxkey,key)) 
+        {
+            tree->current = auxNode;
+            return;
+        }
+        //lower_than retorna 1 si key1<key2, y 0 sino
+        if (tree->lower_than(auxkey,key))
+            tree->current = tree->current->right; //key es mayor
+        else
+            tree->current = tree->current->left;  //key es menor      
+    }
+
+    //si no encontro nada, current sigue siendo el parent q buscamos
+    if (lower_than((tree->current)->pair->key,key))
+        tree->current->right = auxNode;
+    else
+        tree->current->left = auxNode;
 
 }
 
