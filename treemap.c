@@ -88,11 +88,8 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     {
         
         void* auxkey = (void*) (tree->current)->pair->key;
-        if (is_equal(tree,auxkey,key)) 
-        {
-            tree->current = auxNode;
-            return;
-        }
+        if (is_equal(tree,auxkey,key))  return;
+        
         //lower_than retorna 1 si key1<key2, y 0 sino
         if (tree->lower_than(auxkey,key))
             tree->current = tree->current->right; //key es mayor
