@@ -188,3 +188,9 @@ treemap.c:176:23: error: unused variable ‘child’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 59aec1d
+vie 21 abr 2023 15:29:23 -04: 
+ treemap.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+ tests:  15|4
+total_score: 25/70
+e4fdf9e
