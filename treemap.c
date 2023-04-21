@@ -84,7 +84,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     void* auxkey=NULL;
     tree->current = tree->root;
 
-    while (tree->current != NULL)
+    while (tree->current->right != NULL && tree->current->left != NULL)
     {        
         auxkey = (void*) (tree->current)->pair->key;
         if (is_equal(tree,auxkey,key))  return;
@@ -97,12 +97,11 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     }
 
     //si no encontro nada, current sigue siendo la posicion que buscamos.
-    
-    tree->current = tree->current->parent;
     if (tree->lower_than(auxkey,key))
             tree->current->right = auxNode; //key es mayor
         else
-            tree->current->left = auxNode;  //key es menor   
+            tree->current->left = auxNode;
+    
 }
 
 TreeNode * minimum(TreeNode * x){
