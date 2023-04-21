@@ -56,6 +56,9 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     es mayor o menor que current con la funcion lower_than()
     Si es mayor convertir current en el hijo derecho, sino en el hijo izquierdo
     repetir.*/
+
+    tree->current = tree->root;
+
     if (tree->current == NULL) printf("Este es un null\n");
     while (tree->current != NULL)
     {
