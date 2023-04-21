@@ -57,7 +57,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     Si es mayor convertir current en el hijo derecho, sino en el hijo izquierdo
     repetir.*/
 
-    while (tree->current == NULL)
+    while (tree->current != NULL)
     {
         
        void* auxkey = (void*) (tree->current)->pair->key;
