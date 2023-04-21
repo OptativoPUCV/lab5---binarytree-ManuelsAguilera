@@ -101,7 +101,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     }
 
     //si no encontro nada, current sigue siendo el parent q buscamos
-    if (lower_than((tree->current)->pair->key,key))
+    if (tree->lower_than((tree->current)->pair->key,key))
         tree->current->right = auxNode;
     else
         tree->current->left = auxNode;
