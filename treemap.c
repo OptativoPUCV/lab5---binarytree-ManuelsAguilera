@@ -59,7 +59,8 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
     while (tree->current == NULL)
     {
-        void* auxkey = (void*) tree->current->pair->key;
+        void* auxkey = malloc(sizeof(void*));
+        auxkey = (void*) tree->current->pair->key;
         if (is_equal(tree,auxkey,key)) return tree->current->pair;
         //lower_than retorna 1 si key1<key2, y 0 sino
         if (tree->lower_than(auxkey,key))
