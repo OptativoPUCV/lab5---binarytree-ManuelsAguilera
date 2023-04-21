@@ -8,3 +8,14 @@ vie 21 abr 2023 10:10:35 -04:
  tests:  4|7
 total_score: 5/70
 03d2eb4
+vie 21 abr 2023 10:24:13 -04: 
+ treemap.c | 29 +++++++++++++++++++++++++----
+ 1 file changed, 25 insertions(+), 4 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:64:13: error: implicit declaration of function ‘is_lower’ [-Werror=implicit-function-declaration]
+   64 |         if (is_lower(tree->current->pair,key))
+      |             ^~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+d7fbcf7

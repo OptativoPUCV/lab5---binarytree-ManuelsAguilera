@@ -19,6 +19,7 @@ struct TreeMap {
     int (*lower_than) (void* key1, void* key2);
 };
 
+//retorna 1 si las claves son iguales y 0 si no lo son
 int is_equal(TreeMap* tree, void* key1, void* key2){
     if(tree->lower_than(key1,key2)==0 &&  
         tree->lower_than(key2,key1)==0) return 1;
@@ -47,6 +48,30 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
     return new;
 }
 
+Pair * searchTreeMap(TreeMap * tree, void* key) {
+
+    /* Para hallar un valor es como una busqueda binaria
+    Si current es el valor (saberlo con is_equal), entonces devolver current.
+    Si current no es el valor, entonces compara si el valor
+    es mayor o menor que current con la funcion lower_than()
+    Si es mayor convertir current en el hijo derecho, sino en el hijo izquierdo
+    repetir.*/
+
+    while (tree->current == NULL)
+    {
+        if (is_equal(tree,tree->current->pair,key)) return tree->current->pair;
+        //is_lower retorna 1 si key1<key2, y 0 sino
+        if (is_lower(tree->current->pair,key))
+            tree->current = tree->current->left;
+        else
+            tree->current = tree->current->right;        
+    }
+
+    return NULL;
+}
+
+
+
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
@@ -73,10 +98,6 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 
 
-
-Pair * searchTreeMap(TreeMap * tree, void* key) {
-    return NULL;
-}
 
 
 Pair * upperBound(TreeMap * tree, void* key) {
