@@ -100,12 +100,8 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
             tree->current = tree->current->left;  //key es menor      
     }
 
-    //si no encontro nada, current sigue siendo el parent q buscamos
-    if (tree->lower_than((tree->current)->pair->key,key))
-        tree->current->right = auxNode;
-    else
-        tree->current->left = auxNode;
-
+    //si no encontro nada, current sigue siendo la posicion que buscamos.
+    tree->current = auxNode;
 }
 
 TreeNode * minimum(TreeNode * x){
