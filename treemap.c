@@ -78,30 +78,43 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
-    //Copiare mas o menos el mismo mecanismo de busqueda
-    //debido a que debo implementar lo mismo pero de distinta forma.
-    TreeNode* auxNode = createTreeNode(key,value);
-    void* auxkey=NULL;
-    tree->current = tree->root;
 
-    while ((tree->current->right == tree->current->left)!=NULL)
-    {        
-        auxkey = (void*) (tree->current)->pair->key;
-        if (is_equal(tree,auxkey,key))  return;
-        
-        //lower_than retorna 1 si key1<key2, y 0 sino
-        if (tree->lower_than(auxkey,key))
-            tree->current = tree->current->right; //key es mayor
-        else
-            tree->current = tree->current->left;  //key es menor      
-    }
-
-    //si no encontro nada, current sigue siendo la posicion que buscamos.
-    if (tree->lower_than(auxkey,key))
-            tree->current->right = auxNode; //key es mayor
-        else
-            tree->current->left = auxNode;
+    /* No puedo reutilizar search, ya que este no me devolvera
+    info cuando no este dentro del mapa.
     
+    Me conviene escribir directamente un algoritmo de busqueda que al
+    encontrar procese de manera distinto los datos.
+    
+    Me puedo basar en la busqueda y sus comparaciones eso si.*/
+    void* auxKey=NULL;
+    TreeNode* auxNode = tree->root; //Usar un auxiliar para no apuntar mal si el dato ya existe
+    
+    while(1)
+    {
+        auxKey = auxNode->pair->key;
+        
+        if (is_equal(tree,key,auxKey)) return;
+
+        if (tree->lower_than(key,auxKey)) 
+        {
+            if (auxNode->left != NULL)
+                auxNode = auxNode->left;
+            else{
+                auxNode->left=createTreeNode(key,value);
+                tree->current = auxNode->left;
+                return;
+            }
+        }
+        else{
+            if (auxNode->right != NULL)
+                auxNode = auxNode->right;
+            else{
+                auxNode->right=createTreeNode(key,value);
+                tree->current = auxNode->right;
+                return;
+            }
+        }
+    } 
 }
 
 TreeNode * minimum(TreeNode * x){
