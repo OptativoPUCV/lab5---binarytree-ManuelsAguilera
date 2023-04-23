@@ -148,7 +148,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     */
 
    //Obtener cuantos hijos, y si tiene de que lado..
-/*
+
     int cantChilds =0;
     int childDirection;  // 1 left, 0 right
 
@@ -167,15 +167,28 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     switch (cantChilds)
     {
         case 0:
+            if ((node->parent)->left == node)
+                (node->parent)->left = NULL;
+            else
+                (node->parent)->right = NULL;
+
             free(node);
             break;
         case 1:
+            TreeNode* child = (childDirection)?node->left:node->right;
+
+            if ((node->parent)->left == node)
+                (node->parent)->left = child;
+            else
+                (node->parent)->right = child;
             
             break;
         case 2:
             break;
     }
-*/
+
+
+//hola mundo
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
