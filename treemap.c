@@ -195,7 +195,6 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         break;
     }
 
-    free(node);
     printf("Done removal\n");
 }
 
