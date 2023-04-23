@@ -151,7 +151,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     int cantChilds =0;
     int childDirection;  // 1 left, 0 right
-
+    TreeNode* aux = NULL;
 
     if (node->left !=NULL)
         {
@@ -172,23 +172,31 @@ void removeNode(TreeMap * tree, TreeNode* node) {
             else
                 (node->parent)->right = NULL;
 
-            free(node);
             break;
         case 1:
-            TreeNode* child = (childDirection)?node->left:node->right;
+            aux = (childDirection)?node->left:node->right; //Aux acts as child
 
             if ((node->parent)->left == node)
-                (node->parent)->left = child;
+                (node->parent)->left = aux;
             else
-                (node->parent)->right = child;
+                (node->parent)->right = aux;
             
+            aux->parent=node->parent;
+            free(aux);
             break;
         case 2:
-            break;
+            aux = minimum(node->right);
+            //El nodo minimum solo puede tener un hijo a la derecha
+            //o ninguno.
+            node->pair=aux->pair;
+            removeNode(tree,aux);
+        break;
+        default:
+        break;
     }
 
-
-//hola mundo
+    free(node);
+    printf("Done removal\n");
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
